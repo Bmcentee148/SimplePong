@@ -7,21 +7,19 @@ import javax.swing.*;
 
 @SuppressWarnings("serial")
 public class Game extends JPanel{
-	
-	int x, y = 0;
-	
-	private void moveBall() {
-		x = x + 1;
-		y = y + 1;
-	}
-	
+		
+	Ball gameBall = new Ball();
 	public void paint(Graphics g) {
 		super.paint(g); //cleans the panel
 		Graphics2D g2d = (Graphics2D)g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 						RenderingHints.VALUE_ANTIALIAS_ON);
-		g2d.fillOval(x,y,30,30);
+		gameBall.paint(g2d);
 		
+	}
+	
+	public void updateBall() {
+		gameBall.move(this.getWidth(), this.getHeight());
 	}
 	public static void main(String[] args) {
 		JFrame mainFrame = new JFrame("Simple Pong");
@@ -33,7 +31,7 @@ public class Game extends JPanel{
 		
 		while(true) {
 			try {
-				gamePanel.moveBall();
+				gamePanel.updateBall();
 				gamePanel.repaint();
 				Thread.sleep(10);
 			} catch (InterruptedException e) {
