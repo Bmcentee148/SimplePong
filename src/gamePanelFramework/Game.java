@@ -6,30 +6,34 @@ import java.awt.geom.Ellipse2D;
 import javax.swing.*;
 
 @SuppressWarnings("serial")
-public class Game extends JPanel{
-		
-	Ball gameBall = new Ball();
-	public void paint(Graphics g) {
-		super.paint(g); //cleans the panel
-		Graphics2D g2d = (Graphics2D)g;
+public class Game extends JPanel {
+
+	private static Ball gameBall = new Ball();
+
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g); // cleans the panel
+		Graphics2D g2d = (Graphics2D)g.create();
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-						RenderingHints.VALUE_ANTIALIAS_ON);
-		gameBall.paint(g2d);
-		
+				RenderingHints.VALUE_ANTIALIAS_ON);
+		gameBall.paintComponent(g2d);
+		g2d.dispose();
+
 	}
-	
+
 	public void updateBall() {
 		gameBall.move(this.getWidth(), this.getHeight());
 	}
+
 	public static void main(String[] args) {
+		//gameBall = new Ball();
 		JFrame mainFrame = new JFrame("Simple Pong");
-		mainFrame.setSize(400,400);
+		mainFrame.setSize(400, 400);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Game gamePanel = new Game();
 		mainFrame.add(gamePanel);
 		mainFrame.setVisible(true);
-		
-		while(true) {
+
+		while (true) {
 			try {
 				gamePanel.updateBall();
 				gamePanel.repaint();
@@ -39,7 +43,7 @@ public class Game extends JPanel{
 				System.exit(1);
 			}
 		}
-		
+
 	}
 
 }
