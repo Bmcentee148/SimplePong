@@ -37,11 +37,12 @@ public class Ball {
 		if(yPos + yInc < 0) {
 			yInc = SPEED;
 		}
-		if(collision()) {
-			yInc = -SPEED;
-		}
 		if(yPos + yInc > gamePanel.getHeight() - DIAMETER) {
 			gamePanel.gameOver();
+		}
+		if(collision()) {
+			yInc = -SPEED;
+			yPos = gamePanel.racquet.getTop() - DIAMETER;
 		}
 		
 		xPos = xPos + xInc;
@@ -58,11 +59,6 @@ public class Ball {
 		return yPos;
 	}
 	
-	public void collisionBottom(Racquet racquet) {
-		
-		yInc = -SPEED;
-		yPos = racquet.getTop() - this.DIAMETER;
-	}
 	
 	public boolean collision() {
 		return this.gamePanel.ball.getBounds().intersects(this.gamePanel.racquet.getBounds());

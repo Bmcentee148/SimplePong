@@ -63,10 +63,6 @@ public class GamePanel extends JPanel {
 		racquet.move();
 	}
 	
-	public boolean collision() {
-		return this.ball.getBounds().intersects(this.racquet.getBounds());
-	}
-	
 	public void gameOver() {
 		System.out.println("Game complete. Shutting down");
 		System.exit(0);
