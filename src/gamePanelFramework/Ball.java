@@ -1,17 +1,18 @@
 package gamePanelFramework;
 
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import javax.swing.*;
 
 public class Ball {
+	
 	private static final int SPEED = 3;
 	private static final int BALL_SIZE = 25;
 	
 	private int xPos = 0;
 	private int yPos = 0;
-	private int xInc = SPEED, yInc = SPEED;
+	private int xInc = SPEED;
+	private	int yInc = SPEED;
 	
 	public void paintComponent(Graphics2D g) {
 		g.fillOval(xPos, yPos, BALL_SIZE, BALL_SIZE);
@@ -35,6 +36,6 @@ public class Ball {
 	}
 	
 	public String toString() {
-		return "xPos: " + xPos + "\nY: " + yPos;
+		return "xPos: " + xPos + "\nyPos: " + yPos;
 	}
 }

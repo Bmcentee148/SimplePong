@@ -3,6 +3,7 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
 public class Racquet {
+	
 	public static final int SPEED = 2;
 	private static final int WIDTH = 60;
 	private static final int HEIGHT = 10;
@@ -22,16 +23,22 @@ public class Racquet {
 		}
 		yPos = screenHeight - HEIGHT; //place at bottom of screen
 	}
+	
 	public void KeyPressed(KeyEvent e) {
-		if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+		
+		if(e.getKeyCode() == KeyEvent.VK_LEFT) 
 			xInc = -SPEED;
-		}
-		if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT)
 			xInc = SPEED;
-		}
+		
 	}
 	
 	public void KeyReleased(KeyEvent e) {
 		xInc = 0;
+	}
+	
+	@Override
+	public String toString() {
+		return "xPos:" + xPos + "\nyPos:" + yPos;
 	}
 }

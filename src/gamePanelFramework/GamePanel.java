@@ -58,6 +58,7 @@ public class GamePanel extends JPanel {
 
 	
 	public void update() {
+		
 		ball.move(this.getWidth(), this.getHeight());
 		racquet.move(this.getWidth(),this.getHeight()); 
 	}
