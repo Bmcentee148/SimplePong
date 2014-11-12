@@ -6,33 +6,35 @@ import java.awt.Graphics2D;
 import javax.swing.*;
 
 public class Ball {
-	private static final int SPEED = 2;
-	private int x = 0;
-	private int y = 0;
+	private static final int SPEED = 3;
+	private static final int BALL_SIZE = 25;
+	
+	private int xPos = 0;
+	private int yPos = 0;
 	private int xInc = SPEED, yInc = SPEED;
 	
 	public void paintComponent(Graphics2D g) {
-		g.fillOval(x, y, 30, 30);
+		g.fillOval(xPos, yPos, BALL_SIZE, BALL_SIZE);
 	}
 	
 	protected void move(int winWidth, int winHeight) {
-		if(x + xInc < 0) {
+		if(xPos + xInc < 0) {
 			xInc = SPEED;
 		}
-		if(x + xInc > winWidth - 30) {
+		if(xPos + xInc > winWidth - BALL_SIZE) {
 			xInc = -SPEED;
 		}
-		if(y + yInc < 0) {
+		if(yPos + yInc < 0) {
 			yInc = SPEED;
 		}
-		if(y + yInc > winHeight - 30) {
+		if(yPos + yInc > winHeight - BALL_SIZE) {
 			yInc = -SPEED;
 		}
-		x = x + xInc;
-		y = y + yInc;
+		xPos = xPos + xInc;
+		yPos = yPos + yInc;
 	}
 	
 	public String toString() {
-		return "X: " + x + "\nY: " + y;
+		return "xPos: " + xPos + "\nY: " + yPos;
 	}
 }
