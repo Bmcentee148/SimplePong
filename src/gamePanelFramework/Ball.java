@@ -15,24 +15,33 @@ public class Ball {
 	private int xInc = SPEED;
 	private	int yInc = SPEED;
 	
+	private GamePanel gamePanel;
+	
+	public Ball(GamePanel gamePanel) {
+		this.gamePanel = gamePanel;
+	}
+	
 	public void paintComponent(Graphics2D g) {
 		
 		g.fillOval(xPos, yPos, DIAMETER, DIAMETER);
 	}
 	
-	protected void move(int winWidth, int winHeight) {
+	protected void move() {
 		
 		if(xPos + xInc < 0) {
 			xInc = SPEED;
 		}
-		if(xPos + xInc > winWidth - DIAMETER) {
+		if(xPos + xInc > gamePanel.getWidth() - DIAMETER) {
 			xInc = -SPEED;
 		}
 		if(yPos + yInc < 0) {
 			yInc = SPEED;
 		}
-		if(yPos + yInc > winHeight - DIAMETER) {
+		if(collision()) {
 			yInc = -SPEED;
+		}
+		if(yPos + yInc > gamePanel.getHeight() - DIAMETER) {
+			gamePanel.gameOver();
 		}
 		
 		xPos = xPos + xInc;
@@ -53,6 +62,10 @@ public class Ball {
 		
 		yInc = -SPEED;
 		yPos = racquet.getTop() - this.DIAMETER;
+	}
+	
+	public boolean collision() {
+		return this.gamePanel.ball.getBounds().intersects(this.gamePanel.racquet.getBounds());
 	}
 	public String toString() {
 		

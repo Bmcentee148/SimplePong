@@ -9,14 +9,14 @@ import javax.swing.*;
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel {
 	// game objects
-	private Ball ball;
-	private Racquet racquet;
+	protected Ball ball;
+	protected Racquet racquet;
 	
 	//only constructor
 	public GamePanel() {
 		
-		ball = new Ball();
-		racquet = new Racquet();
+		ball = new Ball(this);
+		racquet = new Racquet(this);
 		
 		KeyListener listener = new KeyListener() {
 			@Override
@@ -59,10 +59,8 @@ public class GamePanel extends JPanel {
 	
 	public void update() {
 		
-		ball.move(this.getWidth(), this.getHeight());
-		racquet.move(this.getWidth(),this.getHeight());
-		if(collision())
-			ball.collisionBottom(racquet);
+		ball.move();
+		racquet.move();
 	}
 	
 	public boolean collision() {
@@ -70,7 +68,8 @@ public class GamePanel extends JPanel {
 	}
 	
 	public void gameOver() {
-		
+		System.out.println("Game complete. Shutting down");
+		System.exit(0);
 	}
 	
 	//main Method

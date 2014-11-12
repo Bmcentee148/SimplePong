@@ -6,7 +6,7 @@ import java.awt.event.KeyEvent;
 
 public class Racquet {
 	
-	public static final int SPEED = 2;
+	public static final int SPEED = 3;
 	public static final int WIDTH = 60;
 	public static final int HEIGHT = 10;
 	
@@ -14,18 +14,23 @@ public class Racquet {
 	private int yPos = 0;
 	private int xInc = 0;
 	
+	private GamePanel gamePanel;
+	
+	public Racquet(GamePanel gamePanel) {
+		this.gamePanel = gamePanel;
+	}
 	
 	public void paintComponent(Graphics g) {
 		
 		g.fillRect(xPos,yPos, 60, 10);
 	}
 	
-	protected void move(int screenWidth, int screenHeight) {
+	protected void move() {
 		
-		if(xPos + xInc >= 0 && xPos + xInc <= screenWidth - WIDTH) { 
+		if(xPos + xInc >= 0 && xPos + xInc <= gamePanel.getWidth() - WIDTH) { 
 			xPos += xInc;
 		}
-		yPos = screenHeight - HEIGHT; //place at bottom of screen
+		yPos = gamePanel.getHeight() - HEIGHT; //place at bottom of screen
 	}
 	
 	public void KeyPressed(KeyEvent e) {
