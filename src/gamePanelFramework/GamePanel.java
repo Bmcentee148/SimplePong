@@ -4,7 +4,6 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.geom.Ellipse2D;
-
 import javax.swing.*;
 
 @SuppressWarnings("serial")
@@ -41,6 +40,7 @@ public class GamePanel extends JPanel {
 	}
 	
 	public void paintComponent(Graphics g) {
+		
 		super.paintComponent(g); // cleans the panel
 		
 		Graphics2D g2d = (Graphics2D)g.create();//create snapshot of Graphics obj
@@ -60,11 +60,22 @@ public class GamePanel extends JPanel {
 	public void update() {
 		
 		ball.move(this.getWidth(), this.getHeight());
-		racquet.move(this.getWidth(),this.getHeight()); 
+		racquet.move(this.getWidth(),this.getHeight());
+		if(collision())
+			ball.collisionBottom(racquet);
+	}
+	
+	public boolean collision() {
+		return this.ball.getBounds().intersects(this.racquet.getBounds());
+	}
+	
+	public void gameOver() {
+		
 	}
 	
 	//main Method
 	public static void main(String[] args) { 
+		
 		//setup and add game panel
 		JFrame mainFrame = new JFrame("Simple Pong");
 		mainFrame.setSize(300, 400);
